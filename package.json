@@ -1,0 +1,14 @@
+{
+  "name": "server_certiprov",
+  "version": "1.0.0",
+  "description": "Rest Service para aplicacion certiprov",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "G. David Zambrano",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
