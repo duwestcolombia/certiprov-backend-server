@@ -4,11 +4,16 @@
   "description": "Rest Service para aplicacion certiprov",
   "main": "index.js",
   "scripts": {
+    "start": "nodemon app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "G. David Zambrano",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.17.1"
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "mariadb": "^2.0.5",
+    "mysql2": "^1.6.5",
+    "sequelize": "^5.8.8"
   }
 }
