@@ -18,29 +18,33 @@ app.use(bodyParser.json())
 
 
 
-db.authenticate().then(()=>{
+db.authenticate().then(() => {
     console.log('Estamos conectados a la bd con sequelize');
-    
+
 }).catch(err => {
     console.log('Coneccion no disponible', err);
-    
+
 })
 
 
 //Rutas
 var appRoutes = require('./routes/app_routes')
 var cuenta = require('./routes/cuentas');
-var clientes = require('./routes/clientes');
+var proveedores = require('./routes/proveedores');
 var retenciones = require('./routes/retenciones');
+var usuarios = require('./routes/usuarios');
+var autenticar = require('./routes/login');
 
 //Asignacion de ruta
 
+app.use('/autenticar', autenticar);
+app.use('/usuarios', usuarios);
 app.use('/retenciones', retenciones);
-app.use('/clientes', clientes);
+app.use('/proveedores', proveedores);
 app.use('/cuentas', cuenta);
-app.use('/',appRoutes);
+app.use('/', appRoutes);
 
 
 
 //Puerto de escucha servidor
-app.listen(port, ()=> console.log('Estoy escuchando en el server' + port));
+app.listen(port, () => console.log('Estoy escuchando en el server' + port));

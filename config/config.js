@@ -1,0 +1,1 @@
+module.exports.SEED = 'your-token-validate-from-duwest-certiprov-baktun-colguate';
