@@ -93,7 +93,7 @@ app.put('/actualizar/:cod', mdAutenticacion.verificaToken, (req, res) => {
         }).then((usuaUpdate) => {
             res.status(200).json({
                 result: true,
-                usuario: usuaUpdate,
+                usuario: body,
                 message: "Usuario actualizado correctamente"
             })
         }).catch(err => {

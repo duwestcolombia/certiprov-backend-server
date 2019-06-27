@@ -14,20 +14,33 @@ var app = express();
 //========================================
 app.get('/', mdAutenticacion.verificaToken, (req, res) => {
     //obtenemos todos los usuarios pero le excluimos la contraseña
-    cuenta.findAll().then(cuenta_result => {
+    var limite = 5;
 
-        res.status(200).json({
-            result: true,
-            cuentas: cuenta_result
-        })
+    var desde = req.query.desde || 0;
+    desde = Number(desde);
 
-    }).catch(err => {
-        return res.status(500).json({
-            result: false,
-            message: 'Error al obtener las Cuentas',
-            errors: err
+    cuenta.findAndCountAll().then((data) => {
+
+        cuenta.findAll({
+            limit: limite,
+            offset: desde
+        }).then(cuenta_result => {
+
+            res.status(200).json({
+                result: true,
+                cuentas: cuenta_result,
+                total: data.count
+            })
+
+        }).catch(err => {
+            return res.status(500).json({
+                result: false,
+                message: 'Error al obtener las Cuentas',
+                errors: err
+            })
         })
     })
+
 
 
 })
@@ -77,7 +90,7 @@ app.post('/', mdAutenticacion.verificaToken, (req, res) => {
     cuenta.create(body).then((nuevaCuenta) => {
         res.status(200).json({
             result: true,
-            usuario: nuevaCuenta
+            cuenta: nuevaCuenta
         })
     }).catch(err => {
         return res.status(400).json({

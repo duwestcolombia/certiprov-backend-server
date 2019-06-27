@@ -26,7 +26,7 @@ var Usuarios = db.define('usuarios', {
         type: Sequelize.STRING,
         validate: {
             len: [3, 12],
-            allowNull: true
+            notNull: false
         }
     },
     EMAIL_USUARIO: {
